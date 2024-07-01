@@ -6,8 +6,12 @@ import './Home.scss'
 import Products from './Products';
 import { ButtonGroup } from 'react-bootstrap';
 import { getCategory } from '../../services/ApiService';
+import { useNavigate } from 'react-router-dom';
+
 const HomePage = () => {
     const [categories, setCategories] = useState('')
+    const [filterCategory, setFilterCategory] = useState('')
+    const navigate = useNavigate();
     useEffect(() => {
         getCategories();
     }, [])
@@ -17,6 +21,10 @@ const HomePage = () => {
             setCategories(res.data)
         }
     }
+    const handleFilterCategory = (category) => {
+        setFilterCategory(category);
+    }
+
     return (
         <div>
             <Carousel autoplay>
@@ -30,7 +38,7 @@ const HomePage = () => {
                                     <h2>Fall - Winter Collections 2024</h2>
                                     <p>A specialist label creating luxury essentials. Ethically crafted with an unwavering</p>
                                     <p>commitment to exceptional quality.</p>
-                                    <Button class="btn btn-primary">Shop now </Button>
+                                    <Button onClick={() => navigate('/products')} class="btn btn-primary">Shop now </Button>
 
                                 </div>
                             </div>
@@ -47,7 +55,7 @@ const HomePage = () => {
                                     <h2>Fall - Winter Collections 2024</h2>
                                     <p>A specialist label creating luxury essentials. Ethically crafted with an unwavering</p>
                                     <p>commitment to exceptional quality.</p>
-                                    <Button class="btn btn-primary">Shop now </Button>
+                                    <Button onClick={() => navigate('/products')} class="btn btn-primary">Shop now </Button>
 
                                 </div>
                             </div>
@@ -65,17 +73,18 @@ const HomePage = () => {
                 </div>
                 <div className='d-flex justify-content-center'>
                     <ButtonGroup>
-                        <button className='btn btn-outline-dark'>All</button>
                         {
                             categories && categories.length > 0 && categories.map((c, index) =>
-                                <button key={index} className='btn btn-outline-dark mx-2'>{c}</button>
+                                <button key={index} onClick={() => handleFilterCategory(c)} className='btn btn-outline-dark mx-2'>{c.toUpperCase()}</button>
                             )
                         }
 
                     </ButtonGroup>
                 </div>
                 <div className='my-3'>
-                    <Products />
+                    <Products
+                        filterCategory={filterCategory}
+                    />
                 </div>
             </div>
         </div >
