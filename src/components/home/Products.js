@@ -36,14 +36,15 @@ const Products = (props) => {
             <Row>
                 {products.map((product, index) => (
                     <Col key={index} sm={4}>
-                        <Card style={{ width: '19rem' }} className='my-3'>
+                        <Card style={{ width: '19rem', height: 462 }} className='my-3'>
                             <Card.Img height={'250px'} variant="top" src={product.image} />
                             <Card.Body>
                                 <Card.Title>{product.title}</Card.Title>
                                 <Card.Text>
                                     <p className='fw-bolder' style={{ color: '#E6BF6A' }}>{product.price} $</p>
                                 </Card.Text>
-                                <Button variant="primary">Go somewhere</Button>
+                                <Button variant="primary">Buy</Button>
+                                <Button className='mx-3' variant="success">Add To Cart</Button>
                             </Card.Body>
                         </Card>
                     </Col>

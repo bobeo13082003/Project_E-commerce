@@ -1,9 +1,11 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { GrFormNext } from "react-icons/gr";
 import { NavLink } from 'react-router-dom';
 import './Shop.scss'
 import Search from 'antd/es/input/Search';
+import AllProducts from './AllProducts';
 const Shop = () => {
+    const [search, setSearch] = useState('');
     return (
         <div>
             <div className='shop-header p-5 my-3' style={{ backgroundColor: '#F2F2EE' }}>
@@ -17,22 +19,23 @@ const Shop = () => {
                 </div>
             </div>
             <div className='shop-body container'>
-                <div className='row'>
+                <div className='row my-3'>
                     <div className='col-md-3'>
                         <Search
                             placeholder="input search text"
-                            style={{
-                                width: 200,
-                            }}
+                            onChange={e => setSearch(e.target.value)}
                         />
                     </div>
                     <div className='col-md-6'>
-                        <p>Showing 1–12 of 126 results</p>
                     </div>
-                    <div className='col-md-3'>
-                        <p>Sort by Price:</p>
+                    <div className='col-md-3 d-flex'>
 
                     </div>
+                </div>
+                <div className='products'>
+                    <AllProducts
+                        search={search}
+                    />
                 </div>
             </div>
         </div>
