@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { getProductById } from '../services/ApiService';
+import Item from 'antd/es/list/Item';
+import { toast } from 'react-toastify';
 
 const DetailProduct = () => {
     const { id } = useParams();
@@ -20,6 +22,31 @@ const DetailProduct = () => {
             setSingleProduct(res.data)
         }
     }
+
+    const handleCart = (product) => {
+        const cart = JSON.parse(localStorage.getItem('cart')) || [];
+        const isProductExist = cart.find(i => i.id === product.id)
+        if (isProductExist) {
+            const updateCart = cart.map(i => {
+                if (i.id === product.id) {
+                    return {
+                        ...i,
+                        quantity: i.quantity + 1
+                    }
+                }
+                return i
+            })
+            localStorage.setItem('cart', JSON.stringify(updateCart))
+        } else {
+            localStorage.setItem('cart', JSON.stringify([...cart, { ...product, quantity: 1 }]))
+        }
+        toast.success('Adding To Cart Successfully')
+    }
+
+
+
+
+
     return (
 
         <section className="text-gray-600 body-font overflow-hidden">
@@ -58,7 +85,7 @@ const DetailProduct = () => {
                         </div>
                         <div>
                             <span className="title-font font-medium text-2xl text-gray-900">${singleProduct.price}</span>
-                            <button className="flex ml-auto text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded">Add To Cart</button>
+                            <button onClick={() => handleCart(singleProduct)} className="flex ml-auto text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded">Add To Cart</button>
                         </div>
                     </div>
                 </div>

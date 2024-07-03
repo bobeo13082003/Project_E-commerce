@@ -72,10 +72,10 @@ const HomePage = () => {
                     </div>
                 </div>
                 <div className='d-flex justify-content-center'>
-                    <ButtonGroup>
+                    <ButtonGroup className='row'>
                         {
                             categories && categories.length > 0 && categories.map((c, index) =>
-                                <button key={index} onClick={() => handleFilterCategory(c)} className='btn btn-outline-dark mx-2'>{c.toUpperCase()}</button>
+                                <button key={index} onClick={() => handleFilterCategory(c)} className='col-md-2 btn btn-outline-dark mx-2'>{c.toUpperCase()}</button>
                             )
                         }
 
