@@ -12,3 +12,7 @@ export const getlimitProduct = () => {
 export const getProductByCategories = (category) => {
     return axios.get(`/products/category/${category}`);
 }
+
+export const getProductById = (id) => {
+    return axios.get(`/products/${id}`)
+}

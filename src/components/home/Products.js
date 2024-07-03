@@ -3,7 +3,7 @@ import { Button, Card, Col, Container, Row } from 'react-bootstrap';
 import { getAllProducts, getProductByCategories, getlimitProduct } from '../../services/ApiService';
 import { GrLinkNext } from "react-icons/gr";
 import '../Pagging.scss'
-import { NavLink } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 const Products = (props) => {
     const [products, setProducts] = useState([]);
     const { filterCategory } = props;
@@ -37,21 +37,20 @@ const Products = (props) => {
                 {products.map((product, index) => (
                     <Col key={index} sm={4}>
                         <Card style={{ width: '19rem', height: 462 }} className='my-3'>
-                            <Card.Img height={'250px'} variant="top" src={product.image} />
+                            <Card.Img style={{ height: 250 }} variant="top" src={product.image} />
                             <Card.Body>
-                                <Card.Title>{product.title}</Card.Title>
+                                <Card.Title><Link to={`/detail/${[product.id]}`} className='title'>{product.title}</Link></Card.Title>
                                 <Card.Text>
                                     <p className='fw-bolder' style={{ color: '#E6BF6A' }}>{product.price} $</p>
                                 </Card.Text>
-                                <Button variant="primary">Buy</Button>
-                                <Button className='mx-3' variant="success">Add To Cart</Button>
+
                             </Card.Body>
                         </Card>
                     </Col>
                 ))}
             </Row>
-            <div className='text-center my-3'>
-                <NavLink to='/products' style={{ borderRadius: 25 }} className='btn btn-outline-dark px-4 py-3'>View all <GrLinkNext className='mx-1' /></NavLink>
+            <div className='d-flex my-3' style={{ justifyContent: 'center' }}>
+                <NavLink to='/products' style={{ borderRadius: 25, width: 150 }} className='btn btn-outline-dark px-4 py-3 d-flex'>View all <GrLinkNext className='mx-2 mt-1' /></NavLink>
             </div>
 
         </Container>

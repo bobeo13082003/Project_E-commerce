@@ -6,6 +6,7 @@ import logo from '../../assest/_fb80661f-f791-4b4b-9cf6-3479759cb267.jpg'
 import { CgProfile } from "react-icons/cg";
 import { ImExit } from "react-icons/im";
 import { NavLink } from 'react-router-dom';
+import { FaShoppingCart } from "react-icons/fa";
 const Header = () => {
     return (
         <div>
@@ -17,8 +18,7 @@ const Header = () => {
                         <Nav className="me-auto">
                             <NavLink className='nav-link' to='/'>Home</NavLink>
                             <NavLink className='nav-link' to='/products'>Shop</NavLink>
-                            <NavLink className='nav-link' to='/products'>Card</NavLink>
-
+                            <NavLink className='nav-link d-flex' to='/cart'><FaShoppingCart className='mt-1 mx-2' /></NavLink>
                         </Nav>
                         <Nav>
                             <NavDropdown title="Setting" id="basic-nav-dropdown">

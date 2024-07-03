@@ -3,6 +3,7 @@ import Accordion from 'react-bootstrap/Accordion';
 import { getAllProducts, getCategory } from '../../services/ApiService';
 import { Button, Card, FormCheck, FormGroup } from 'react-bootstrap';
 import ReactPaginate from 'react-paginate';
+import { Link } from 'react-router-dom';
 
 const AllProducts = (props) => {
     const { search } = props;
@@ -140,16 +141,15 @@ const AllProducts = (props) => {
                     {
                         currentItems.map((p) =>
 
-                            <Card style={{ width: '23rem' }}>
+                            <Card key={p.id} style={{ width: '23rem' }}>
                                 <Card.Img style={{ height: 250 }} src={p.image} />
                                 <Card.Body>
-                                    <Card.Title>{p.title}</Card.Title>
+                                    <Card.Title><Link to={`/detail/${p.id}`} className='title'>{p.title}</Link></Card.Title>
                                     <Card.Text>
                                         {p.description}
                                         <p className='fw-bolder' style={{ color: '#E6BF6A' }}>{p.price} $</p>
                                     </Card.Text>
-                                    <Button variant="primary">Buy</Button>
-                                    <Button className='mx-3' variant="success">Add To Cart</Button>
+
                                 </Card.Body>
                             </Card>
                         )

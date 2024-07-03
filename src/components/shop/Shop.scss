@@ -5,3 +5,16 @@
         color: grey;
     }
 }
+
+.products {
+
+    .title {
+        text-decoration: none;
+        color: black;
+        cursor: pointer;
+
+        &:hover {
+            text-decoration: underline;
+        }
+    }
+}
