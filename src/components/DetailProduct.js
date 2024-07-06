@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { getProductById } from '../services/ApiService';
-import Item from 'antd/es/list/Item';
 import { toast } from 'react-toastify';
+
 
 const DetailProduct = () => {
     const { id } = useParams();
@@ -22,6 +22,7 @@ const DetailProduct = () => {
             setSingleProduct(res.data)
         }
     }
+
 
     const handleCart = (product) => {
         const cart = JSON.parse(localStorage.getItem('cart')) || [];

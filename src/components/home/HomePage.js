@@ -30,15 +30,15 @@ const HomePage = () => {
             <Carousel autoplay>
                 <div className='carousel mx-5 my-2'>
                     <div><img style={{ width: '95%' }} src={baner_1} /></div>
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-xl-5 col-lg-7 col-md-8">
-                                <div class="hero__text">
+                    <div className="container">
+                        <div className="row">
+                            <div className="col-xl-5 col-lg-7 col-md-8">
+                                <div className="hero__text">
                                     <h6>Summer Collection</h6>
                                     <h2>Fall - Winter Collections 2024</h2>
                                     <p>A specialist label creating luxury essentials. Ethically crafted with an unwavering</p>
                                     <p>commitment to exceptional quality.</p>
-                                    <Button onClick={() => navigate('/products')} class="btn btn-primary">Shop now </Button>
+                                    <Button onClick={() => navigate('/products')} className="btn btn-primary">Shop now </Button>
 
                                 </div>
                             </div>
@@ -47,15 +47,15 @@ const HomePage = () => {
                 </div>
                 <div className='carousel mx-5 my-2'>
                     <div> <img style={{ width: '95%' }} src={baner_2} /></div>
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-xl-5 col-lg-7 col-md-8">
-                                <div class="hero__text">
+                    <div className="container">
+                        <div className="row">
+                            <div className="col-xl-5 col-lg-7 col-md-8">
+                                <div className="hero__text">
                                     <h6>Summer Collection</h6>
                                     <h2>Fall - Winter Collections 2024</h2>
                                     <p>A specialist label creating luxury essentials. Ethically crafted with an unwavering</p>
                                     <p>commitment to exceptional quality.</p>
-                                    <Button onClick={() => navigate('/products')} class="btn btn-primary">Shop now </Button>
+                                    <Button onClick={() => navigate('/products')} className="btn btn-primary">Shop now </Button>
 
                                 </div>
                             </div>

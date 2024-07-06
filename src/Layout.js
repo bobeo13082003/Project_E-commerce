@@ -8,6 +8,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import Shop from './components/shop/Shop';
 import DetailProduct from './components/DetailProduct';
 import Cart from './components/cart/Cart';
+import Login from './components/auths/Login';
 
 const Layout = () => {
     return (
@@ -20,6 +21,8 @@ const Layout = () => {
                     <Route path='/cart' element={<Cart />} />
 
                 </Route>
+                <Route path='/login' element={<Login />} />
+
             </Routes>
 
 

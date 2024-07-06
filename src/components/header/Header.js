@@ -7,7 +7,16 @@ import { CgProfile } from "react-icons/cg";
 import { ImExit } from "react-icons/im";
 import { NavLink } from 'react-router-dom';
 import { FaShoppingCart } from "react-icons/fa";
+import { useDispatch, useSelector } from 'react-redux';
+import { doLogout } from '../../redux/action/userAction';
+import { toast } from 'react-toastify';
 const Header = () => {
+    const dispatch = useDispatch()
+    const isAuthenticated = useSelector(state => state.userReducer.isAuthenticated)
+    const handleLogout = () => {
+        dispatch(doLogout())
+        toast.success('LOGOUT SUCCESSFULLY')
+    }
     return (
         <div>
             <Navbar expand="lg" className="bg-body-tertiary">
@@ -22,14 +31,20 @@ const Header = () => {
                         </Nav>
                         <Nav>
                             <NavDropdown title="Setting" id="basic-nav-dropdown">
-                                <NavDropdown.Item><NavLink className='nav-link'><CgProfile className='mb-1' /> Profile</NavLink></NavDropdown.Item>
-                                <NavDropdown.Item>
-                                    Login
-                                </NavDropdown.Item>
-                                <NavDropdown.Divider />
-                                <NavDropdown.Item>
-                                    <NavLink className='nav-link'><ImExit /> Logout</NavLink>
-                                </NavDropdown.Item>
+                                {
+                                    isAuthenticated === false ?
+                                        <NavDropdown.Item href='/login'>
+                                            Login
+                                        </NavDropdown.Item>
+                                        :
+                                        <>
+                                            <NavDropdown.Item><NavLink className='nav-link'><CgProfile className='mb-1' /> Profile</NavLink></NavDropdown.Item>
+                                            <NavDropdown.Divider />
+                                            <NavDropdown.Item>
+                                                <NavLink onClick={handleLogout} className='nav-link'><ImExit /> Logout</NavLink>
+                                            </NavDropdown.Item>
+                                        </>
+                                }
                             </NavDropdown>
                         </Nav>
                     </Navbar.Collapse>

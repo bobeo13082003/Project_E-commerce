@@ -3,6 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 
 const Cart = () => {
+
     const cart = JSON.parse(localStorage.getItem('cart')) || [];
     const [carts, setCarts] = useState([]);
 

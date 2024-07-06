@@ -16,3 +16,7 @@ export const getProductByCategories = (category) => {
 export const getProductById = (id) => {
     return axios.get(`/products/${id}`)
 }
+
+export const login = (username, password) => {
+    return axios.post(`/auth/login`, { username, password });
+}
