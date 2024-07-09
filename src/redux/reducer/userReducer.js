@@ -1,7 +1,9 @@
-import { ADD_CART, DEC_ITEM, DELETE_CART, INC_ITEM, USER_LOGIN, USER_LOGOUT } from "../action/userAction";
+import { USER_LOGIN, USER_LOGOUT } from "../action/userAction";
 
 const INIT = {
-    token: '',
+    username: '',
+    password: '',
+    role: '',
     isAuthenticated: false
 }
 
@@ -10,7 +12,9 @@ const userReducer = (state = INIT, action) => {
         case USER_LOGIN:
             return {
                 ...state,
-                token: action.payload,
+                username: action.payload.username,
+                password: action.payload.password,
+                role: action.payload.role,
                 isAuthenticated: true
             }
             break;

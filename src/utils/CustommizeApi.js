@@ -4,7 +4,7 @@ import NProgress from 'nprogress';
 
 
 const instance = axios.create({
-    baseURL: 'https://fakestoreapi.com',
+    baseURL: 'http://localhost:3000',
 });
 
 NProgress.configure({

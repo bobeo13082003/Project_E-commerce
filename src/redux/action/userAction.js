@@ -3,10 +3,10 @@ export const USER_LOGOUT = 'USER_LOGOUT'
 
 
 
-export const doLogin = (token) => {
+export const doLogin = (username, password, role) => {
     return {
         type: USER_LOGIN,
-        payload: token
+        payload: { username, password, role }
     }
 }
 export const doLogout = () => {

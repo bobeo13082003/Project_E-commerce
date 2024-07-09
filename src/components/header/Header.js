@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
@@ -11,12 +11,17 @@ import { useDispatch, useSelector } from 'react-redux';
 import { doLogout } from '../../redux/action/userAction';
 import { toast } from 'react-toastify';
 const Header = () => {
+
+
     const dispatch = useDispatch()
     const isAuthenticated = useSelector(state => state.userReducer.isAuthenticated)
     const handleLogout = () => {
         dispatch(doLogout())
         toast.success('LOGOUT SUCCESSFULLY')
     }
+
+
+
     return (
         <div>
             <Navbar expand="lg" className="bg-body-tertiary">
@@ -33,9 +38,14 @@ const Header = () => {
                             <NavDropdown title="Setting" id="basic-nav-dropdown">
                                 {
                                     isAuthenticated === false ?
-                                        <NavDropdown.Item href='/login'>
-                                            Login
-                                        </NavDropdown.Item>
+                                        <>
+                                            <NavDropdown.Item href='/login'>
+                                                Login
+                                            </NavDropdown.Item>
+                                            <NavDropdown.Item href='/register'>
+                                                Register
+                                            </NavDropdown.Item>
+                                        </>
                                         :
                                         <>
                                             <NavDropdown.Item><NavLink className='nav-link'><CgProfile className='mb-1' /> Profile</NavLink></NavDropdown.Item>

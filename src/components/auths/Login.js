@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { FaRegEye } from "react-icons/fa";
 import { FaRegEyeSlash } from "react-icons/fa";
-import { login } from '../../services/ApiService';
+import { getAccounts, login } from '../../services/ApiService';
 import { toast } from 'react-toastify';
 import { Link, useNavigate } from 'react-router-dom';
 import { Button, Space, Spin } from 'antd';
@@ -12,6 +12,7 @@ const Login = () => {
     const [showPassord, setShowPassword] = useState(false);
     const [userName, setUserName] = useState('');
     const [password, setPassword] = useState('');
+    const [accounts, setAccounts] = useState([])
     const [loading, setLoading] = useState(false);
     const dispatch = useDispatch();
 
@@ -24,16 +25,20 @@ const Login = () => {
             setLoading(false)
         }
         else {
-            let res = await login(userName.trim(), password.trim())
-            if (res && res.data && res.data.token) {
-                toast.success('Login Successfully')
-                dispatch(doLogin(res.data.token))
-                setLoading(false)
-                navigate('/')
-            } else {
-                toast.error('UserName Or Password Not Correct')
-                setLoading(false)
+            let res = await getAccounts();
+            if (res && res.data) {
+                const account = res.data.find((a) => a.username === userName.trim() && a.password === password.trim())
+                if (account) {
+                    toast.success('Login Successfully')
+                    dispatch(doLogin(account.username, account.password, account.role))
+                    setLoading(false)
+                    navigate('/')
+                } else {
+                    toast.error('UserName Or Password Not Correct')
+                    setLoading(false)
+                }
             }
+
         }
     }
 
@@ -70,6 +75,9 @@ const Login = () => {
                             }
                             Login
                         </button>
+                        <p className="text-sm font-light text-gray-500 dark:text-gray-400">
+                            Not have an account? <a href="/register" className="font-medium text-primary-600 hover:underline dark:text-primary-500">Register here</a>
+                        </p>
                         <div className='my-2'>
                             <Link to={'/'}>Home</Link>
                         </div>
