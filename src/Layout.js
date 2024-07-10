@@ -10,6 +10,8 @@ import DetailProduct from './components/DetailProduct';
 import Cart from './components/cart/Cart';
 import Login from './components/auths/Login';
 import Register from './components/auths/Register';
+import ManageProduct from './components/manage/ManageProduct';
+import ManageAccount from './components/manage/ManageAccount';
 
 const Layout = () => {
     return (
@@ -20,7 +22,8 @@ const Layout = () => {
                     <Route path='/products' element={<Shop />} />
                     <Route path='/detail/:id' element={<DetailProduct />} />
                     <Route path='/cart' element={<Cart />} />
-
+                    <Route path='/manage-product' element={<ManageProduct/>}/>
+                    <Route path='/manage-account' element={<ManageAccount/>}/>
                 </Route>
                 <Route path='/login' element={<Login />} />
                 <Route path='/register' element={<Register />} />
