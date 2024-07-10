@@ -1,20 +1,10 @@
 import React, { useEffect, useState } from 'react';
-<<<<<<< Updated upstream
-import { useParams } from 'react-router-dom';
-import { getAllProducts, getProductById } from '../services/ApiService';
-import { toast } from 'react-toastify';
-<<<<<<< HEAD
-import { MdStar } from "react-icons/md";
-=======
-
-=======
 import { useNavigate, useParams } from 'react-router-dom';
 import { getAllProducts } from '../services/ApiService';
 import { toast } from 'react-toastify';
 import { MdStar } from "react-icons/md";
 import { useSelector } from 'react-redux';
->>>>>>> Stashed changes
->>>>>>> admin
+
 
 const DetailProduct = () => {
     const { id } = useParams();
@@ -46,13 +36,7 @@ const DetailProduct = () => {
         }
     }
 
-<<<<<<< HEAD
-    console.log('c', singleProduct)
-    console.log('cid', id)
-=======
-<<<<<<< Updated upstream
-=======
->>>>>>> admin
+
 
     if (loading) {
         return <div>Loading...</div>;
@@ -60,10 +44,6 @@ const DetailProduct = () => {
 
     const { image, category, title, description, rating, price } = singleProduct;
 
-<<<<<<< HEAD
-=======
->>>>>>> Stashed changes
->>>>>>> admin
 
     const handleCart = (product) => {
         const cart = JSON.parse(localStorage.getItem('cart')) || [];
