@@ -24,6 +24,7 @@ const Login = () => {
             setLoading(false)
         }
         else {
+<<<<<<< Updated upstream
             let res = await login(userName.trim(), password.trim())
             if (res && res.data && res.data.token) {
                 toast.success('Login Successfully')
@@ -33,6 +34,20 @@ const Login = () => {
             } else {
                 toast.error('UserName Or Password Not Correct')
                 setLoading(false)
+=======
+            let res = await getAccounts();
+            if (res && res.data) {
+                const account = res.data.find((a) => a.username === userName.trim() && a.password === password.trim())
+                if (account) {
+                    toast.success('Login Successfully')
+                    dispatch(doLogin(account.id, account.username, account.password, account.role))
+                    setLoading(false)
+                    navigate('/')
+                } else {
+                    toast.error('UserName Or Password Not Correct')
+                    setLoading(false)
+                }
+>>>>>>> Stashed changes
             }
         }
     }

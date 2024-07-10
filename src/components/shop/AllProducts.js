@@ -112,9 +112,9 @@ const AllProducts = (props) => {
                                 {categories.map((c) => (
                                     <FormGroup key={c}>
                                         <FormCheck
-                                            label={c.toUpperCase()}
-                                            onChange={() => handleCategoryChange(c)}
-                                            checked={selectedCategories.includes(c)}
+                                            label={c.name.toUpperCase()}
+                                            onChange={() => handleCategoryChange(c.name)}
+                                            checked={selectedCategories.includes(c.name)}
                                         />
                                     </FormGroup>
                                 ))}
