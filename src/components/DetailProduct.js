@@ -1,14 +1,30 @@
 import React, { useEffect, useState } from 'react';
+<<<<<<< Updated upstream
 import { useParams } from 'react-router-dom';
 import { getAllProducts, getProductById } from '../services/ApiService';
 import { toast } from 'react-toastify';
+<<<<<<< HEAD
 import { MdStar } from "react-icons/md";
+=======
+
+=======
+import { useNavigate, useParams } from 'react-router-dom';
+import { getAllProducts } from '../services/ApiService';
+import { toast } from 'react-toastify';
+import { MdStar } from "react-icons/md";
+import { useSelector } from 'react-redux';
+>>>>>>> Stashed changes
+>>>>>>> admin
 
 const DetailProduct = () => {
     const { id } = useParams();
+    const idCustomer = useSelector((state) => state.userReducer.id)
+    const isAuthenticated = useSelector((state) => state.userReducer.isAuthenticated)
 
     const [singleProduct, setSingleProduct] = useState({});
     const [loading, setLoading] = useState(true);
+
+    const navigate = useNavigate();
 
     useEffect(() => {
         if (id) {
@@ -30,8 +46,13 @@ const DetailProduct = () => {
         }
     }
 
+<<<<<<< HEAD
     console.log('c', singleProduct)
     console.log('cid', id)
+=======
+<<<<<<< Updated upstream
+=======
+>>>>>>> admin
 
     if (loading) {
         return <div>Loading...</div>;
@@ -39,11 +60,19 @@ const DetailProduct = () => {
 
     const { image, category, title, description, rating, price } = singleProduct;
 
+<<<<<<< HEAD
+=======
+>>>>>>> Stashed changes
+>>>>>>> admin
 
     const handleCart = (product) => {
         const cart = JSON.parse(localStorage.getItem('cart')) || [];
         const isProductExist = cart.find(i => i.id === product.id)
-        if (isProductExist) {
+        if (isAuthenticated === false) {
+            toast.warning('Please Login Before Shopping')
+            navigate('/login');
+        }
+        else if (isProductExist) {
             const updateCart = cart.map(i => {
                 if (i.id === product.id) {
                     return {
@@ -53,19 +82,18 @@ const DetailProduct = () => {
                 }
                 return i
             })
-            localStorage.setItem('cart', JSON.stringify(updateCart))
+            localStorage.setItem(`cart${idCustomer}`, JSON.stringify(updateCart))
+            toast.success('Adding To Cart Successfully')
+
         } else {
-            localStorage.setItem('cart', JSON.stringify([...cart, { ...product, quantity: 1 }]))
+            localStorage.setItem(`cart${idCustomer}`, JSON.stringify([...cart, { ...product, quantity: 1 }]))
+            toast.success('Adding To Cart Successfully')
         }
-        toast.success('Adding To Cart Successfully')
     }
 
 
 
-
-
     return (
-
         <section className="text-gray-600 body-font overflow-hidden">
             <div className="container px-5 py-24 mx-auto">
                 <div className="lg:w-4/5 mx-auto flex flex-wrap">

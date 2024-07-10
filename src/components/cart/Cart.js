@@ -1,14 +1,19 @@
 import React, { useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 
 const Cart = () => {
+    const idCustomer = useSelector((state) => state.userReducer.id)
+    const isAuthenticated = useSelector((state) => state.userReducer.isAuthenticated)
 
-    const cart = JSON.parse(localStorage.getItem('cart')) || [];
+    const cart = JSON.parse(localStorage.getItem(`cart${idCustomer}`)) || [];
     const [carts, setCarts] = useState([]);
 
+    const navigate = useNavigate();
+
     useEffect(() => {
-        const storedCart = JSON.parse(localStorage.getItem('cart')) || [];
+        const storedCart = JSON.parse(localStorage.getItem(`cart${idCustomer}`)) || [];
         setCarts(storedCart);
     }, []);
 
@@ -24,7 +29,7 @@ const Cart = () => {
             return i;
         })
         setCarts(updateCart)
-        localStorage.setItem('cart', JSON.stringify(updateCart))
+        localStorage.setItem(`cart${idCustomer}`, JSON.stringify(updateCart))
     }
 
     const handleDec = (id) => {
@@ -38,21 +43,25 @@ const Cart = () => {
             return i;
         })
         setCarts(updateCart)
-        localStorage.setItem('cart', JSON.stringify(updateCart))
+        localStorage.setItem(`cart${idCustomer}`, JSON.stringify(updateCart))
 
     }
     const handleRemoveCart = (id) => {
         const updateCart = cart.filter((i) => i.id !== id)
         setCarts(updateCart)
-        localStorage.setItem('cart', JSON.stringify(updateCart))
+        localStorage.setItem(`cart${idCustomer}`, JSON.stringify(updateCart))
     }
 
     const handleCheckOut = () => {
-        const updateCart = localStorage.removeItem('cart')
-        setCarts(updateCart);
-        if (!cart.length) {
+        const updateCart = localStorage.removeItem(`cart${idCustomer}`)
+        if (isAuthenticated === false) {
+            toast.warning('Please Login Before Check Out')
+            navigate('/login')
+        }
+        else if (!cart.length) {
             toast.error('Please Shopping product')
         } else {
+            setCarts(updateCart);
             toast.success("Check Out Successfully")
         }
     }

@@ -24,22 +24,21 @@ const Login = () => {
             toast.error('UserName Or Password Not Empty')
             setLoading(false)
         }
-        else {
-            let res = await getAccounts();
-            if (res && res.data) {
-                const account = res.data.find((a) => a.username === userName.trim() && a.password === password.trim())
-                if (account) {
-                    toast.success('Login Successfully')
-                    dispatch(doLogin(account.username, account.password, account.role))
-                    setLoading(false)
-                    navigate('/')
-                } else {
-                    toast.error('UserName Or Password Not Correct')
-                    setLoading(false)
-                }
-            }
 
+        let res = await getAccounts();
+        if (res && res.data) {
+            const account = res.data.find((a) => a.username === userName.trim() && a.password === password.trim())
+            if (account) {
+                toast.success('Login Successfully')
+                dispatch(doLogin(account.id, account.username, account.password, account.role))
+                setLoading(false)
+                navigate('/')
+            } else {
+                toast.error('UserName Or Password Not Correct')
+                setLoading(false)
+            }
         }
+
     }
 
     return (
