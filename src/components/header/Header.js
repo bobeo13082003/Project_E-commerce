@@ -32,6 +32,8 @@ const Header = () => {
                         <Nav className="me-auto">
                             <NavLink className='nav-link' to='/'>Home</NavLink>
                             <NavLink className='nav-link' to='/products'>Shop</NavLink>
+                            <NavLink className='nav-link' to='/manage-product'>Manage Product</NavLink>
+                            <NavLink className='nav-link' to='/manage-account'>Manage Account</NavLink>
                             <NavLink className='nav-link d-flex' to='/cart'><FaShoppingCart className='mt-1 mx-2' /></NavLink>
                         </Nav>
                         <Nav>
